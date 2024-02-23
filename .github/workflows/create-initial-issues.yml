@@ -1,5 +1,6 @@
 name: Create initial issues when creating a repo from this template
 on: [create]
+workflow_dispatch:
 permissions:
   contents: read
   issues: write 
