@@ -58,7 +58,10 @@ class Barrier extends GameObject {
 				playerHeight - 5.5 < this.floorBox.position.y
 			) {
 				return true;
-			}
+			} else {
+                // Trigger scoring when a player passes an obstacle without collision
+                addScore(10);
+            }
 		}
 		return false;
 	}

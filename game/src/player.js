@@ -3,6 +3,7 @@ var gamepadManager = new BABYLON.GamepadManager();
 var deviceSourceManager;
 
 const obstacleSpawnInterval = 3.5;
+let scoreTimer = 0; // Timer to track gameplay duration for scoring
 
 class Player extends GameObject {
 	constructor() {
@@ -44,6 +45,13 @@ class Player extends GameObject {
 
 			createObject(new Barrier());
 		}
+
+        // Increment score based on gameplay duration
+        scoreTimer += deltaTime;
+        if (scoreTimer >= 1) { // Every second
+            addScore(1); // Add 1 point per second of gameplay
+            scoreTimer = 0; // Reset timer
+        }
 	}
 
 	endGame() {
@@ -65,6 +73,7 @@ class Player extends GameObject {
 
 		if (collision) {
 			console.log("IMPACT");
+            addScore(10); // Add score when passing an obstacle
 		}
 
 		return outOfBounds || collision;
