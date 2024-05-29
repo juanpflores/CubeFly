@@ -4,6 +4,7 @@ var gapSize = 3; // This determines the size of the gap to create between the fl
 class Barrier extends GameObject {
 	constructor() {
 		super();
+		this.passed = false; // Track if the barrier has been passed by the player
 	}
 
 	init() {
@@ -38,6 +39,9 @@ class Barrier extends GameObject {
 
 		if (this.location < -25) {
 			destroyObject(this);
+		} else if (this.location < 0 && !this.passed) {
+			this.passed = true; // Mark the barrier as passed
+			addScore(10); // Increment the player's score
 		}
 	}
 
