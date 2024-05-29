@@ -1,4 +1,5 @@
 var score = 0;
+var highScore = 0; // Variable to track the high score
 var scoreText;
 
 var createHud = function () {
@@ -20,7 +21,8 @@ var createHud = function () {
 };
 
 var updateScoreText = function () {
-	scoreText.text = "Score: " + score;
+	// Updated to display both current score and high score
+	scoreText.text = "Score: " + score + " | High Score: " + highScore;
 };
 
 var resetScore = function () {
@@ -31,5 +33,8 @@ var resetScore = function () {
 
 var addScore = function (points) {
 	score += points;
+	if (score > highScore) {
+		highScore = score; // Update the high score if current score is greater
+	}
 	updateScoreText();
 };
